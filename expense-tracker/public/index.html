@@ -90,35 +90,59 @@
   <script>
     const form = document.getElementById("expense-form");
     const tableBody = document.querySelector("#expense-table tbody");
-
+    const searchInput = document.getElementById("search");
+  
+    let expenses = [];
+  
+    function renderTable(data) {
+      tableBody.innerHTML = "";
+      data.forEach((expense, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${expense.description}</td>
+          <td>$${parseFloat(expense.amount).toFixed(2)}</td>
+          <td>${expense.category}</td>
+          <td><button class="delete-btn" data-index="${index}">Delete</button></td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+  
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-
-      const description = document.getElementById("description").value;
+  
+      const description = document.getElementById("description").value.trim();
       const amount = document.getElementById("amount").value;
-      const category = document.getElementById("category").value;
-
-      const row = document.createElement("tr");
-
-      row.innerHTML = `
-        <td>${description}</td>
-        <td>$${parseFloat(amount).toFixed(2)}</td>
-        <td>${category}</td>
-        <td><button class="delete-btn">Delete</button></td>
-      `;
-
-      tableBody.appendChild(row);
-
+      const category = document.getElementById("category").value.trim();
+  
+      if (!description || !amount) return;
+  
+      expenses.push({ description, amount, category });
+      renderTable(expenses);
       form.reset();
     });
-
+  
     tableBody.addEventListener("click", function (e) {
       if (e.target.classList.contains("delete-btn")) {
-        const row = e.target.closest("tr");
-        tableBody.removeChild(row);
+        const index = e.target.getAttribute("data-index");
+        expenses.splice(index, 1);
+        renderTable(expenses);
+        filterExpenses(); // re-apply filter if needed
       }
     });
+  
+    function filterExpenses() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const filtered = expenses.filter(exp =>
+        exp.description.toLowerCase().includes(searchTerm) ||
+        exp.category.toLowerCase().includes(searchTerm)
+      );
+      renderTable(filtered);
+    }
+  
+    searchInput.addEventListener("input", filterExpenses);
   </script>
+  
 
 </body>
 </html>
