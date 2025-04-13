@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expense Tracker</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    input {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Expense Tracker</h1>
+
+  <!-- Form to add a new expense -->
+  <form id="expense-form">
+    <input type="text" id="description" placeholder="Description" required />
+    <input type="number" id="amount" placeholder="Amount" required />
+    <input type="text" id="category" placeholder="Category" />
+    <button type="submit">Add Expense</button>
+  </form>
+
+  <!-- Table to display expenses -->
+  <table id="expense-table">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Expense rows will be added here dynamically -->
+    </tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById("expense-form");
+    const tableBody = document.querySelector("#expense-table tbody");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Get input values
+      const description = document.getElementById("description").value;
+      const amount = document.getElementById("amount").value;
+      const category = document.getElementById("category").value;
+
+      // Create a new row
+      const row = document.createElement("tr");
+
+      // Add data cells
+      row.innerHTML = `
+        <td>${description}</td>
+        <td>$${parseFloat(amount).toFixed(2)}</td>
+        <td>${category}</td>
+        <td><button class="delete-btn">Delete</button></td>
+      `;
+
+      // Append row to table
+      tableBody.appendChild(row);
+
+      // Clear form inputs
+      form.reset();
+    });
+
+    // Handle delete button clicks using event delegation
+    tableBody.addEventListener("click", function (e) {
+      if (e.target.classList.contains("delete-btn")) {
+        const row = e.target.closest("tr");
+        tableBody.removeChild(row);
+      }
+    });
+  </script>
+</body>
+</html>
