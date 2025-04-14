@@ -37,12 +37,15 @@ The Expense Tracker App is a simple yet powerful tool that allows users to log a
    git clone https://github.com/your-username/expense-tracker.git
 
 2. Navigate into the project directory:
-   ```cd expense-tracker```
+   ```bash
+   cd expense-tracker
 3. Install dependencies:
-   ```npm install```
-4.Start the development server:
-  ```npm start```
-
+   ```bash
+   npm install
+4. Start the development server:
+  ```bash
+npm start
+```
 **License**
 This project is licensed under the MIT License.
 
