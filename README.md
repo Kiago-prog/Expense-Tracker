@@ -46,12 +46,6 @@ The Expense Tracker App is a simple yet powerful tool that allows users to log a
   ```bash
 npm start
 ```
-**License**
-This project is licensed under the MIT License.
-
-
-
-
 
  **License**
 
