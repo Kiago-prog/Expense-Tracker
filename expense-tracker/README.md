@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# **Expense Tracker**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple **Expense Tracker** application built using HTML, CSS, and JavaScript. The app allows users to **add**, **delete**, and **search** for expenses. It also provides functionality to **sort** the expense table by different categories such as **description**, **amount**, and **category**.
 
-## Available Scripts
+## **Features**
 
-In the project directory, you can run:
+- **Add Expenses**: Users can input the **description**, **amount**, and **category** of their expense, and it will be added to the table.
+- **Delete Expenses**: Each expense entry comes with a **delete button** that allows the user to remove that entry from the list.
+- **Search**: Users can **search** for specific expenses by **description** or **category**.
+- **Sort**: Users can **sort** the expenses by **description**, **amount**, or **category**.
 
-### `npm start`
+## **Installation**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To use this Expense Tracker locally, follow these steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone or download this repository.
+2. Open the `index.html` file in a web browser.
 
-### `npm test`
+## **File Structure**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- `index.html`: The main **HTML file** that contains the structure of the app.
+- `style.css`: The **stylesheet** for styling the app.
+- `script.js`: The **JavaScript** file that manages the app's functionality (form handling, expense tracking, searching, sorting, etc.).
 
-### `npm run build`
+## **Technologies Used**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **HTML**: For the structure of the app.
+- **CSS**: For styling the app.
+- **JavaScript**: For the functionality (form handling, table management, searching, sorting, etc.).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## **Future Improvements**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Persistent storage using **localStorage** to save expenses across sessions.
+- Visual representation of expenses (charts/graphs).
+- **Category dropdown** to make expense categorization easier.
 
-### `npm run eject`
+## **License**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is open-source and available under the **MIT License**.
