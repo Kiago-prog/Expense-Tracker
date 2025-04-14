@@ -1,51 +1,61 @@
-import React, { useState } from "react";
-import ExpenseTable from './ExpenseTable';
-import ExpenseForm from './ExpenseForm';
-import SearchBar from './SearchBar';
+const form = document.getElementById('expense-form');
+const tableBody = document.querySelector('#expense-table tbody');
+const searchInput = document.getElementById('search');
 
-function App() {
-  const [expenses, setExpenses] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortField, setSortField] = useState('');
+let expenses = [];
 
-  const addExpense = (newExpense) => {
-    setExpenses([...expenses, newExpense]);
-  };
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const description = document.getElementById('description').value;
+  const amount = document.getElementById('amount').value;
+  const category = document.getElementById('category').value;
 
-  const deleteExpense = (id) => {
-    const updated = expenses.filter(exp => exp.id !== id);
-    setExpenses(updated);
-  };
+  console.log({ description, amount, category });  // Check the input data
 
-  const filteredExpenses = expenses.filter(
-    exp =>
-      exp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      exp.description.toLowerCase().includes(searchTerm.toLowerCase())
+  const expense = { description, amount, category };
+  expenses.push(expense);
+  console.log(expenses);  // Log the array to see if it's being updated
+
+  displayExpenses(expenses);
+  form.reset();
+});
+
+
+searchInput.addEventListener('input', () => {
+  const term = searchInput.value.toLowerCase();
+  const filtered = expenses.filter(e =>
+    e.description.toLowerCase().includes(term) ||
+    e.category.toLowerCase().includes(term)
   );
+  displayExpenses(filtered);
+});
 
-  const sortedExpenses = [...filteredExpenses].sort((a, b) => {
-    if (sortField === 'description') {
-      return a.description.localeCompare(b.description);
-    } else if (sortField === 'name') {
-      return a.name.localeCompare(b.name);
-    } else {
-      return 0;
-    }
+function displayExpenses(data) {
+  tableBody.innerHTML = '';
+  data.forEach((expense, index) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${expense.description}</td>
+      <td>$${parseFloat(expense.amount).toFixed(2)}</td>
+      <td>${expense.category}</td>
+      <td><button class="delete-btn" onclick="deleteExpense(${index})">Delete</button></td>
+    `;
+    tableBody.appendChild(row);
   });
-
-  return (
-    <div style={{ padding: '20px' }}>
-      <h1>Expense Tracker</h1>
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <ExpenseForm addExpense={addExpense} />
-      <select onChange={(e) => setSortField(e.target.value)} style={{ marginBottom: '10px' }}>
-        <option value="">-- Sort By --</option>
-        <option value="name">Name</option>
-        <option value="description">Description</option>
-      </select>
-      <ExpenseTable expenses={sortedExpenses} deleteExpense={deleteExpense} />
-    </div>
-  );
 }
 
-export default App;
+function deleteExpense(index) {
+  expenses.splice(index, 1);
+  displayExpenses(expenses);
+}
+
+function sortTable(columnIndex) {
+  const key = ['description', 'amount', 'category'][columnIndex];
+  const sorted = [...expenses].sort((a, b) => {
+    if (key === 'amount') {
+      return parseFloat(a[key]) - parseFloat(b[key]);
+    }
+    return a[key].localeCompare(b[key]);
+  });
+  displayExpenses(sorted);
+}
